@@ -15,7 +15,7 @@ var connectionOptions =  {
   "transports" : ["websocket"]
 };
 
-const socket = socketIO.connect('http://monitoramento.asthon.com.br:8083', connectionOptions);
+const socket = socketIO.connect('http://botucatu.asthon.com.br:8083', connectionOptions);
 let rodoviaria = ["Estação Rodoviária" , "Monitoramento Fluviométrico" , "11/03/2023" , "Ponte da Rodoviária" , "GlobalWater WL500" , "0,1 cm" , "LoRaWAN" , "90 segundos"];
 let barduco = ["Estação Barduco" , "Monitoramento Pluviométrico" , "11/03/2023" , "Auto Elétrica Barduco" , "YOUNG 52203" , "0,1 mm" , "LoRaWAN" , "90 segundos"];
 
