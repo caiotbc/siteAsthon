@@ -7,36 +7,24 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import Logo from "../images/logo.png";
-import { Margin } from '@mui/icons-material';
 import {Link} from 'react-router-dom';
 
 const pages = ['Mapa', 'Rodoviária', 'Barduco'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Menubar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   const imgStyle = {
     height : 40 ,
     marginRight: "30px"
@@ -87,7 +75,6 @@ function Menubar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -95,7 +82,7 @@ function Menubar() {
               textDecoration: 'none',
             }}
           >
-            <img src={Logo} style={imgStyle} alt="logo" ></img>
+             <Link to="/Mapa" ><img src={Logo} style={imgStyle} alt="logo" ></img></Link>
           </Typography>
      
 
@@ -145,7 +132,6 @@ function Menubar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -157,7 +143,7 @@ function Menubar() {
               textDecoration: 'none',
             }}
           >
-            <img src={Logo} style={imgStyle} alt="logo" ></img>
+           <Link to="/Mapa" > <img src={Logo} style={imgStyle} alt="logo" ></img></Link>
           </Typography>
          
         </Toolbar>

@@ -1,26 +1,9 @@
-import { Button, Grid, Typography} from '@mui/material';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {Grid} from '@mui/material';
 import React, { useState , useEffect } from 'react';
-import moment from "moment";
-import Grafico from "./components/Grafico"
 import GraficoBarra from "./components/GraficoBarra"
 import Card from "./components/Card"
 import CardLora from "./components/CardLora"
 import Ficha from "./components/Ficha"
-
-function formatXAxis(tickItem) {
-  // If using moment.js
-  //console.log(tickItem);
-
-  return moment(tickItem).format('HH:mm')
-  }
-
-  function formatXAxisLabel(tickItem) {
-    // If using moment.js
-    console.log(tickItem);
-  
-    return "Hora: " + moment(tickItem).format('HH:mm')
-    }
 
   
 const Pluv = (props) =>
@@ -30,39 +13,6 @@ const Pluv = (props) =>
         socket.emit('dataReq', "marlin_3");
       },[socket]);
 
-      useEffect(() => {
-        socket.on('levelLastHour', (message) => {
-          //console.log(message);
-          setlevelLastHour(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('levelLastDay', (message) => {
-          //console.log(message);
-          setlevelLastDay(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('levelLastWeek', (message) => {
-          //console.log(message);
-          setlevelLastWeek(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
       useEffect(() => {
         socket.on('rainLastHour', (message) => {
           //console.log(message);
@@ -96,39 +46,7 @@ const Pluv = (props) =>
           socket.off('disconnect');
         };
       });
-      useEffect(() => {
-        socket.on('maxLevelDay', (message) => {
-          //console.log(message);
-          setMaxLevelDay(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('maxLevelWeek', (message) => {
-          //console.log(message);
-          setMaxLevelWeek(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('currentLevel', (message) => {
-          //console.log(message);
-          setCurrentLevel(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
+      
       useEffect(() => {
         socket.on('lastLora', (message) => {
           //console.log(message);
@@ -140,18 +58,48 @@ const Pluv = (props) =>
           socket.off('disconnect');
         };
       });
+      useEffect(() => {
+        socket.on('currentRain', (message) => {
+          //console.log(message);
+          setCurrentRain(message);
+        });
+    
+        return () => {
+          socket.off('connect');
+          socket.off('disconnect');
+        };
+      });
+      useEffect(() => {
+        socket.on('rainAmountLastDay', (message) => {
+          //console.log(message);
+          setRainAmountLastDay(message);
+        });
+    
+        return () => {
+          socket.off('connect');
+          socket.off('disconnect');
+        };
+      });
+      useEffect(() => {
+        socket.on('rainAmountLastHour', (message) => {
+          //console.log(message);
+          setRainAmountLastHour(message);
+        });
+    
+        return () => {
+          socket.off('connect');
+          socket.off('disconnect');
+        };
+      });
+      
 
-
-    const [levelLastHour, setlevelLastHour] = useState([]);
-    const [levelLastDay, setlevelLastDay] = useState([]);
-    const [levelLastWeek, setlevelLastWeek] = useState([]);
     const [rainLastHour, setRainLastHour] = useState([]);
     const [rainLastWeek, setRainLastWeek] = useState([]);
     const [rainLastDay, setRainLastDay] = useState([]);
-    const [maxLevelDay, setMaxLevelDay] = useState([]);
-    const [maxLevelWeek, setMaxLevelWeek] = useState([]);
-    const [currentLevel, setCurrentLevel] = useState([]);
     const [lastLora, setLastLora] = useState([]);
+    const [rainAmountLastHour, setRainAmountLastHour] = useState([]);
+    const [rainAmountLastDay, setRainAmountLastDay] = useState([]);
+    const [currentRain, setCurrentRain] = useState([]);
 
     return (
    
@@ -173,22 +121,22 @@ const Pluv = (props) =>
                       <GraficoBarra data={rainLastDay} title={"Chuva no último dia"} interval={250} date={"HH:mm"}/>
                     </Grid>
                     <Grid item lg={4} md={4} sm={12} xs={12}>
-                      <GraficoBarra data={rainLastWeek} title={"Chuva na última semana"} interval={700} date={"HH:mm"}/>
+                      <GraficoBarra data={rainLastWeek} title={"Chuva na última semana"} interval={700} date={"DD/MM"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={currentLevel} title={"Nível do rio no último minuto"}/>
+                      <Card data={currentRain} title={"Chuva registrada no último minuto"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={maxLevelDay} title={"Nível máximo registrado no dia"}/>
+                      <Card data={rainAmountLastHour} title={"Chuva registrada na última hora"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={maxLevelWeek} title={"Nível máximo registrado na semana"}/>
+                      <Card data={rainAmountLastDay} title={"Chuva registrada no último dia"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                       <CardLora data={lastLora} title={"Último envio LoRaWAN"}/>
                     </Grid>
                     <Grid item lg={12} md={12} sm={12} xs={12}>
-                      <Ficha data={rainLastWeek} title={"Chuva na última semana"} interval={700} date={"HH:mm"}/>
+                      <Ficha data={props.ficha} title={"Chuva na última semana"} interval={700} date={"HH:mm"}/>
                     </Grid>
                 </Grid>
             </div>

@@ -1,22 +1,5 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import {Grid, Typography, Paper , Box} from '@mui/material';
-import moment from "moment";
+import {Typography, Paper , Box} from '@mui/material';
 
-function formatXAxis(tickItem) {
-  // If using moment.js
-  //console.log(tickItem);
-
-  return moment(tickItem).format('HH:mm')
-  }
-
-  function formatXAxisLabel(tickItem) {
-    // If using moment.js
-    console.log(tickItem);
-  
-    return "Hora: " + moment(tickItem).format('HH:mm')
-    }
-
-  
 const Card = (props) =>
 {
     return (
@@ -43,13 +26,13 @@ const Card = (props) =>
                 <div style={{
                     width: "100%",
                     textAlign: "center",
-                    fontSize: "73.2989px",
+                    fontSize: "63.2989px",
                     fontWeight: "500",
                     lineHeight: "1.2",
                     position: "relative",
                     zIndex: "1"
                 }}>
-                    {props.data} m
+                    {props.data}
                 </div>
                 
             </Box>

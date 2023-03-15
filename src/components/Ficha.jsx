@@ -1,15 +1,5 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import {Grid, Typography, Paper , Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody} from '@mui/material';
-import moment from "moment";
+import {Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody} from '@mui/material';
 
-function formatXAxis(tickItem) {
-  // If using moment.js
-  //console.log(tickItem);
-
-  return moment(tickItem).format('DD/MM HH:mm:ss')
-  }
-
-  
 const Ficha = (props) =>
 {
     return (
@@ -30,35 +20,35 @@ const Ficha = (props) =>
         <TableBody>
             <TableRow>
               <TableCell>Nome</TableCell>
-              <TableCell>Estação Rodoviária</TableCell>
+              <TableCell>{props.data[0]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Especificação</TableCell>
-              <TableCell>Monitoramento Fluviométrico</TableCell>
+              <TableCell>{props.data[1]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Data de instalação</TableCell>
-              <TableCell>11/03/2023</TableCell>
+              <TableCell>{props.data[2]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Local de instalação</TableCell>
-              <TableCell>Ponte da Rodoviária</TableCell>
+              <TableCell>{props.data[3]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Sensores instalados</TableCell>
-              <TableCell>GlobalWater WL400</TableCell>
+              <TableCell>{props.data[4]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Precisão</TableCell>
-              <TableCell>0,1 cm</TableCell>
+              <TableCell>{props.data[5]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Transmissão</TableCell>
-              <TableCell>LoRaWAN</TableCell>
+              <TableCell>{props.data[6]}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Intervalo</TableCell>
-              <TableCell>90 segundos</TableCell>
+              <TableCell>{props.data[7]}</TableCell>
             </TableRow>
         </TableBody>
       </Table>

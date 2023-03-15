@@ -1,5 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import {Grid, Typography, Paper , Box} from '@mui/material';
+import {Typography, Paper , Box} from '@mui/material';
 import moment from "moment";
 
 function formatXAxis(tickItem) {

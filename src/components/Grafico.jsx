@@ -1,5 +1,5 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer , Line, LineChart} from 'recharts';
-import {Grid, Typography, Paper , Box} from '@mui/material';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {Typography, Paper , Box} from '@mui/material';
 import moment from "moment";
   
 const Grafico = (props) =>

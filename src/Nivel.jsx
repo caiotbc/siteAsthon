@@ -1,26 +1,10 @@
-import { Button, Grid, Typography} from '@mui/material';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Grid} from '@mui/material';
 import React, { useState , useEffect } from 'react';
-import moment from "moment";
 import Grafico from "./components/Grafico"
-import GraficoBarra from "./components/GraficoBarra"
 import Card from "./components/Card"
 import CardLora from "./components/CardLora"
 import Ficha from "./components/Ficha"
 
-function formatXAxis(tickItem) {
-  // If using moment.js
-  //console.log(tickItem);
-
-  return moment(tickItem).format('HH:mm')
-  }
-
-  function formatXAxisLabel(tickItem) {
-    // If using moment.js
-    console.log(tickItem);
-  
-    return "Hora: " + moment(tickItem).format('HH:mm')
-    }
 
   
 const Nivel = (props) =>
@@ -63,39 +47,7 @@ const Nivel = (props) =>
           socket.off('disconnect');
         };
       });
-      useEffect(() => {
-        socket.on('rainLastHour', (message) => {
-          //console.log(message);
-          setRainLastHour(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('rainLastWeek', (message) => {
-          //console.log(message);
-          setRainLastWeek(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('rainLastDay', (message) => {
-          //console.log(message);
-          setRainLastDay(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
+     
       useEffect(() => {
         socket.on('maxLevelDay', (message) => {
           //console.log(message);
@@ -145,9 +97,6 @@ const Nivel = (props) =>
     const [levelLastHour, setlevelLastHour] = useState([]);
     const [levelLastDay, setlevelLastDay] = useState([]);
     const [levelLastWeek, setlevelLastWeek] = useState([]);
-    const [rainLastHour, setRainLastHour] = useState([]);
-    const [rainLastWeek, setRainLastWeek] = useState([]);
-    const [rainLastDay, setRainLastDay] = useState([]);
     const [maxLevelDay, setMaxLevelDay] = useState([]);
     const [maxLevelWeek, setMaxLevelWeek] = useState([]);
     const [currentLevel, setCurrentLevel] = useState([]);
@@ -189,7 +138,7 @@ const Nivel = (props) =>
                       <CardLora data={lastLora} title={"Último envio LoRaWAN"}/>
                     </Grid>
                     <Grid item lg={12} md={12} sm={12} xs={12}>
-                      <Ficha data={rainLastWeek} title={"Chuva na última semana"} interval={700} date={"HH:mm"}/>
+                      <Ficha data={props.ficha} title={"Chuva na última semana"} interval={700} date={"HH:mm"}/>
                     </Grid>
                 </Grid>
             </div>

@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import {Grid, Typography, Paper , Box} from '@mui/material';
+import {Typography, Paper , Box} from '@mui/material';
 import moment from "moment";
   
 const GraficoBarra = (props) =>
@@ -46,7 +46,7 @@ const GraficoBarra = (props) =>
                 <XAxis dataKey="name" tickFormatter={formatXAxis} interval={props.interval}/>
                 <YAxis domain={[0, 3]} />
                 <Tooltip labelFormatter={formatXAxisLabel} />
-                <Bar type="monotone" dataKey="chuva" stroke="#F884d8" fill="#88C4d8"/>
+                <Bar type="monotone" dataKey="chuva" stroke="#5794f2" fill="#5794f2" fillOpacity={0.7} strokeOpacity={1}/>
             </BarChart>
             </ResponsiveContainer>
             </Paper>

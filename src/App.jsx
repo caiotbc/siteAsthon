@@ -1,7 +1,6 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {createTheme, ThemeProvider } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
-import Navbar from './Navbar';
 import './App.css';
 import Mapa from './Mapa';
 import Nivel from './Nivel';
@@ -16,7 +15,9 @@ var connectionOptions =  {
   "transports" : ["websocket"]
 };
 
-const socket = socketIO.connect('http://iot2.liteleds.com:8083', connectionOptions);
+const socket = socketIO.connect('http://monitoramento.asthon.com.br:8083', connectionOptions);
+let rodoviaria = ["Estação Rodoviária" , "Monitoramento Fluviométrico" , "11/03/2023" , "Ponte da Rodoviária" , "GlobalWater WL500" , "0,1 cm" , "LoRaWAN" , "90 segundos"];
+let barduco = ["Estação Barduco" , "Monitoramento Pluviométrico" , "11/03/2023" , "Auto Elétrica Barduco" , "YOUNG 52203" , "0,1 mm" , "LoRaWAN" , "90 segundos"];
 
 function App() {
  const theme = createTheme({
@@ -36,25 +37,31 @@ function App() {
     }
 })
   return (
+    
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
       <Router>
       <Menubar position="fixed"></Menubar>
+      <div style={{
+      padding : "10px",
+      margin: "20px"
+    }}>
         <div className="App">
                 <div className="content">
                   <Routes>
                     <Route exact path="Mapa" element={<Mapa socket={socket}></Mapa>} ></Route>
-                    <Route exact path="/" element={<Mapa></Mapa>} ></Route>
-                    <Route exact path="/Nivel" element={<Nivel socket={socket}></Nivel>} ></Route>
+                    <Route exact path="/" element={<Mapa socket={socket}></Mapa>} ></Route>
+                    <Route exact path="/Nivel" element={<Nivel socket={socket} ficha={rodoviaria}></Nivel>} ></Route>
                     <Route exact path="/Menu" element={<Menubar socket={socket}></Menubar>} ></Route>
-                    <Route exact path="/Pluv" element={<Pluv socket={socket}></Pluv>} ></Route>
+                    <Route exact path="/Pluv" element={<Pluv socket={socket} ficha={barduco}></Pluv>} ></Route>
                   </Routes>
                 </div>
         </div>
+        </div>
       </Router>
-      
     </ThemeProvider>
+
   );
 }
 
