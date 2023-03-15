@@ -27,7 +27,7 @@ const Pluv = (props) =>
 {
     const socket = props.socket;
     useEffect(() => {
-        socket.emit('dataReq', "marlin_1");
+        socket.emit('dataReq', "marlin_3");
       },[socket]);
 
       useEffect(() => {
@@ -156,9 +156,6 @@ const Pluv = (props) =>
     return (
    
             <div sx={{ margin: "10px" }}>
-              <Typography  sx={{fontWeight: 'bold'}} color="primary" variant="h4" marginTop={1}
-                      paddingBottom={2}
-                      marginLeft={2}> Estação Rodoviária</Typography>
                       
                 <Grid container
                       spacing={0}
@@ -169,15 +166,6 @@ const Pluv = (props) =>
                       marginRight={1}
                       >
 
-                    <Grid item lg={4} md={4} sm={12} xs={12}>
-                      <Grafico data={levelLastHour} title={"Nível do rio na última hora"} interval={5} date={"HH:mm"}/>
-                    </Grid>
-                    <Grid item lg={4} md={4} sm={12} xs={12}>
-                      <Grafico data={levelLastDay} title={"Nível do rio no último dia"} interval={150} date={"HH:mm"}/>
-                    </Grid>
-                    <Grid item lg={4} md={4} sm={12} xs={12}>
-                      <Grafico data={levelLastWeek} title={"Nível do rio na última semana"} interval={700} date={"DD/MM"}/>
-                    </Grid>
                     <Grid item lg={4} md={4} sm={12} xs={12}>
                       <GraficoBarra data={rainLastHour} title={"Chuva na última hora"} interval={5} date={"HH:mm"}/>
                     </Grid>

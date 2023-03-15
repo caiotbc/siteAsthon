@@ -31,7 +31,7 @@ const GraficoBarra = (props) =>
             width: "97%",
         }}>
             <Typography>{props.title}</Typography>
-            <ResponsiveContainer width={"90%"}  height={300}>
+            <ResponsiveContainer width={"90%"}  height={200}>
             <BarChart
                 
                 data={props.data}
@@ -42,7 +42,7 @@ const GraficoBarra = (props) =>
                     bottom: 0
                 }}
                 >
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid opacity={0.1} />
                 <XAxis dataKey="name" tickFormatter={formatXAxis} interval={props.interval}/>
                 <YAxis domain={[0, 3]} />
                 <Tooltip labelFormatter={formatXAxisLabel} />

@@ -156,9 +156,7 @@ const Nivel = (props) =>
     return (
    
             <div sx={{ margin: "10px" }}>
-              <Typography  sx={{fontWeight: 'bold'}} color="#FFFFFF" variant="h4" marginTop={1}
-                      paddingBottom={2}
-                      marginLeft={2}> Estação Rodoviária</Typography>
+ 
                       
                 <Grid container
                       spacing={0}
