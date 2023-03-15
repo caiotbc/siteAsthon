@@ -1,0 +1,17 @@
+bagulhos pra botar
+- Mapa
+    - Legenda (3 cores Normal Atenção Crítico)
+    - Alterar cores das bolotas
+    - Popup
+        - Nome do ponto
+        - Status
+        - Alerta
+        - Botão para acessar os dados
+- Pontos
+    - Texto no topo falando o estado
+    - 3 Tipos de páginas (fluv, pluv, hidro)
+    - Gráficos
+        - Ajustar legendas e eixos dos gráficos
+        - Colocar faixas
+    - Um gauge de alerta
+
