@@ -3,9 +3,15 @@ import moment from "moment";
 
 function formatXAxis(tickItem) {
   // If using moment.js
-  //console.log(tickItem);
-
-  return moment(tickItem).format('DD/MM HH:mm:ss')
+  console.log(tickItem);
+    if(tickItem.length>0)
+    {
+        return moment(tickItem).format('DD/MM HH:mm:ss')
+    }
+    else
+    {
+        return " ";
+    }
   }
 
   
