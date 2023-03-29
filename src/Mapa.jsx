@@ -49,8 +49,8 @@ const Mapa = (props) =>
     };
   });
 
-    const position = [-22.888933730019023, -48.438002527966525]
-    const position2 = [-22.8770711974971, -48.44667233316467]
+    const position2 = [-22.888933730019023, -48.438002527966525]
+    const position = [-22.8770711974971, -48.44667233316467]
     return (
    
             <div className="registro">
