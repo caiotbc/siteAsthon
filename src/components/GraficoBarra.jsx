@@ -14,7 +14,7 @@ const GraficoBarra = (props) =>
       
         function formatXAxisLabel(tickItem) {
           // If using moment.js
-          console.log(tickItem);
+          //console.log(tickItem);
         
           return "Hora: " + moment(tickItem).format("DD/MM HH:mm")
           }
@@ -43,10 +43,10 @@ const GraficoBarra = (props) =>
                 }}
                 >
                 <CartesianGrid opacity={0.1} />
-                <XAxis dataKey="name" tickFormatter={formatXAxis} interval={props.interval}/>
+                <XAxis dataKey="timestamp" tickFormatter={formatXAxis} interval={props.interval}/>
                 <YAxis domain={[0, 3]} />
                 <Tooltip labelFormatter={formatXAxisLabel} />
-                <Bar type="monotone" dataKey="chuva" stroke="#5794f2" fill="#5794f2" fillOpacity={0.7} strokeOpacity={1}/>
+                <Bar type="monotone" dataKey="value" stroke="#5794f2" fill="#5794f2" fillOpacity={0.7} strokeOpacity={1}/>
             </BarChart>
             </ResponsiveContainer>
             </Paper>

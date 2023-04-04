@@ -74,7 +74,7 @@ function Menubar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -116,7 +116,7 @@ function Menubar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+
             href="/"
             sx={{
               mr: 2,
@@ -131,7 +131,7 @@ function Menubar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

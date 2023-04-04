@@ -4,103 +4,111 @@ import Grafico from "./components/Grafico"
 import Card from "./components/Card"
 import CardLora from "./components/CardLora"
 import Ficha from "./components/Ficha"
+import axios from "axios";
+import config from "./config.json";
+let baseURL = config.baseURL;
 
-
-  
 const Nivel = (props) =>
 {
-    const socket = props.socket;
-    useEffect(() => {
-        socket.emit('dataReq', "marlin_1");
-      },[socket]);
+  const [levelLastHour, setlevelLastHour] = useState([]);
+  const [levelLastDay, setlevelLastDay] = useState([]);
+  const [levelLastWeek, setlevelLastWeek] = useState([]);
+  const [maxLevelDay, setMaxLevelDay] = useState([]);
+  const [maxLevelWeek, setMaxLevelWeek] = useState([]);
+  const [currentLevel, setCurrentLevel] = useState([]);
+  const [lastLora, setLastLora] = useState([]);
 
-      useEffect(() => {
-        socket.on('levelLastHour', (message) => {
-          //console.log(message);
-          setlevelLastHour(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('levelLastDay', (message) => {
-          //console.log(message);
-          setlevelLastDay(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('levelLastWeek', (message) => {
-          //console.log(message);
-          setlevelLastWeek(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-     
-      useEffect(() => {
-        socket.on('maxLevelDay', (message) => {
-          //console.log(message);
-          setMaxLevelDay(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('maxLevelWeek', (message) => {
-          //console.log(message);
-          setMaxLevelWeek(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('currentLevel', (message) => {
-          //console.log(message);
-          setCurrentLevel(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
-      useEffect(() => {
-        socket.on('lastLora', (message) => {
-          //console.log(message);
-          setLastLora(message);
-        });
-    
-        return () => {
-          socket.off('connect');
-          socket.off('disconnect');
-        };
-      });
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "levelLastHour", id: "260d941a" }}).then((response) => 
+    {
+      //console.log(response.data);
+      setlevelLastHour(response.data);
+    });
+  }, []);
 
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "levelLastDay", id: "260d941a" }}).then((response) => 
+    {
+       //console.log(response.data);
+       setlevelLastDay(response.data);
+    });
+  }, []);
 
-    const [levelLastHour, setlevelLastHour] = useState([]);
-    const [levelLastDay, setlevelLastDay] = useState([]);
-    const [levelLastWeek, setlevelLastWeek] = useState([]);
-    const [maxLevelDay, setMaxLevelDay] = useState([]);
-    const [maxLevelWeek, setMaxLevelWeek] = useState([]);
-    const [currentLevel, setCurrentLevel] = useState([]);
-    const [lastLora, setLastLora] = useState([]);
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "levelLastWeek", id: "260d941a" }}).then((response) => 
+    {
+       //console.log(response.data);
+       setlevelLastWeek(response.data);
+    });
+  }, []);
+
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "maxLevelDay", id: "260d941a" }}).then((response) => 
+    {
+       console.log(response.data);
+       if(response.data[0])
+       {
+          setMaxLevelDay(response.data);
+       }
+       else
+       {
+        console.log("BANANA");
+        setMaxLevelDay([{timestamp: "nan" , value : 0}]);
+       }
+    });
+  }, []);
+
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "maxLevelWeek", id: "260d941a" }}).then((response) => 
+    {
+       //console.log(response.data);
+       if(response.data[0])
+       {
+          setMaxLevelWeek(response.data);
+       }
+       else
+       {
+        setMaxLevelWeek([{timestamp: "nan" , value : 0}]);
+       }
+    });
+  }, []);
+
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "currentLevel", id: "260d941a" }}).then((response) => 
+    {
+       //console.log(response.data);
+       if(response.data[0])
+       {
+          setCurrentLevel(response.data);
+       }
+       else
+       {
+        setCurrentLevel([{timestamp: "" , value : 0}]);
+       }
+    });
+  }, []);
+
+  useEffect(() => 
+  {
+    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "currentLevel", id: "260d941a" }}).then((response) => 
+    {
+       //console.log(response.data);
+       if(response.data[0])
+       {
+          setLastLora(response.data);
+       }
+       else
+       {
+        setLastLora([{timestamp: "" , value : 0}]);
+       }
+    });
+  }, []);
 
     return (
    
@@ -126,13 +134,13 @@ const Nivel = (props) =>
                       <Grafico data={levelLastWeek} title={"Nível do rio na última semana"} interval={700} date={"DD/MM"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={currentLevel} title={"Nível do rio no último minuto"}/>
+                      <Card data={currentLevel} title={"Nível do rio no último minuto"} unit={" m"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={maxLevelDay} title={"Nível máximo registrado no dia"}/>
+                      <Card data={maxLevelDay} title={"Nível máximo registrado no dia"} unit={" m"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
-                      <Card data={maxLevelWeek} title={"Nível máximo registrado na semana"}/>
+                      <Card data={maxLevelWeek} title={"Nível máximo registrado na semana"} unit={" m"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                       <CardLora data={lastLora} title={"Último envio LoRaWAN"}/>

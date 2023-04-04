@@ -3,7 +3,7 @@ import moment from "moment";
 
 function formatXAxis(tickItem) {
   // If using moment.js
-  console.log(tickItem);
+  //console.log(tickItem);
     if(tickItem.length>0)
     {
         return moment(tickItem).format('DD/MM HH:mm:ss')
@@ -17,6 +17,24 @@ function formatXAxis(tickItem) {
   
 const CardLora = (props) =>
 {
+    let title;
+    let value;
+    let time;
+    if(props.data[0])
+    {
+        title = props.title;
+        time = props.data[0].timestamp;
+        if(time == "")
+        {
+            value = "Falha";
+        }
+        else
+        {
+            value = formatXAxis(time);
+        }
+        //console.log(formatXAxis(time));
+    }
+
     return (
             <Paper style={{
             display : "flex",
@@ -26,7 +44,7 @@ const CardLora = (props) =>
             height: "150px",
             width: "97%",
         }}>
-            <Typography>{props.title}</Typography>
+            <Typography>{title}</Typography>
             <Box style={{
                 display: "flex",
                 width: "100%",
@@ -48,7 +66,7 @@ const CardLora = (props) =>
                     position: "relative",
                     zIndex: "1"
                 }}>
-                    {formatXAxis(props.data)}
+                    {value}
                 </div>
                 
             </Box>

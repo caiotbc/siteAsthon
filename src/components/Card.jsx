@@ -2,6 +2,34 @@ import {Typography, Paper , Box} from '@mui/material';
 
 const Card = (props) =>
 {
+    let title;
+    let value;
+    let time;
+    let unit;
+    if(props.data[0])
+    {
+        unit = props.unit;
+        title = props.title;
+        time = props.data[0].timestamp;
+        if(time == "")
+        {
+            value = "Falha";
+        }
+        else
+        {
+            value = props.data[0].value;
+            value = parseFloat(value);
+            if(unit == " m")
+            {
+                value = value.toFixed(3);
+            }
+            else if(unit == " mm")
+            {
+                value = value.toFixed(2);
+            }
+            value = value + unit;
+        }
+    }
     return (
             <Paper style={{
             display : "flex",
@@ -11,7 +39,7 @@ const Card = (props) =>
             height: "150px",
             width: "97%",
         }}>
-            <Typography>{props.title}</Typography>
+            <Typography>{title}</Typography>
             <Box style={{
                 display: "flex",
                 width: "100%",
@@ -32,7 +60,7 @@ const Card = (props) =>
                     position: "relative",
                     zIndex: "1"
                 }}>
-                    {props.data}
+                  {value}
                 </div>
                 
             </Box>
