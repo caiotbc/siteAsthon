@@ -4,9 +4,12 @@ import moment from "moment";
 function formatXAxis(tickItem) {
   // If using moment.js
   //console.log(tickItem);
-    if(tickItem.length>0)
+    if(tickItem>0)
     {
-        return moment(tickItem).format('DD/MM HH:mm:ss')
+        let a = moment(tickItem);
+        a = a.add(3, 'h');
+        a = a.format('DD/MM HH:mm:ss');
+        return a;
     }
     else
     {
@@ -22,8 +25,9 @@ const CardLora = (props) =>
     let time;
     if(props.data[0])
     {
+        //console.log(props.data[0][0]);
         title = props.title;
-        time = props.data[0].timestamp;
+        time = props.data[0][0];
         if(time == "")
         {
             value = "Falha";

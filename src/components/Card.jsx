@@ -6,18 +6,19 @@ const Card = (props) =>
     let value;
     let time;
     let unit;
+    //console.log(props.data);
     if(props.data[0])
     {
         unit = props.unit;
         title = props.title;
-        time = props.data[0].timestamp;
+        time = props.data[0][0];
         if(time == "")
         {
             value = "Falha";
         }
         else
         {
-            value = props.data[0].value;
+            value = props.data[0][1];
             value = parseFloat(value);
             if(unit == " m")
             {

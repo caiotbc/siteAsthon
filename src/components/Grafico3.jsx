@@ -2,7 +2,7 @@ import moment from "moment";
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-const GraficoBarra = (props) =>
+const Grafico3 = (props) =>
 {
 
     let data = props.data;
@@ -17,7 +17,7 @@ const GraficoBarra = (props) =>
           backgroundColor: '#111111',
         plotBackgroundColor: 'rgba(15, 15, 15, .9)',
         plotShadow: true,
-        plotBorderWidth: 1,
+        plotBorderWidth: 1
         },
       
         title: {
@@ -50,12 +50,41 @@ const GraficoBarra = (props) =>
         yAxis:
         {
             gridLineWidth: 0.3,
-            softMax: 0.2,
+            softMax: 3,
             allowDecimals: true,
             title:
             {
                 text: "Nível (m)"
             },
+            plotLines:
+            [{
+                color: "#FFFF00",
+                label:
+                {
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold'
+                    },
+                    x: 5,
+                    y: -4,
+                    text: "Alerta"
+                },
+                value: 1.9
+            },
+            {
+                color: "#FF0000",
+                label:
+                {
+                    style: {
+                        color: 'white',
+                        fontWeight: 'bold'
+                    },
+                    x: 5,
+                    y: -4,
+                    text: "Transbordamento"
+                },
+                value: 2.3
+            }]
         },
         xAxis: {
           type: 'datetime',
@@ -81,12 +110,36 @@ const GraficoBarra = (props) =>
                     lineColor: '#333'
                 }
             },
+            area: {
+                fillColor: {
+                    linearGradient: {
+                      x1: 0,
+                      y1: 0,
+                      x2: 0,
+                      y2: 1
+                    },
+                    stops: [
+                      [0, '#2b908f'],
+                      [1, Highcharts.color('#2b908f').setOpacity(0.4).get('rgba')]
+                    ]
+                  },
+              marker: {
+                radius: 2
+              },
+              lineWidth: 1,
+              states: {
+                hover: {
+                  lineWidth: 1
+                }
+              },
+              threshold: null
+            }
           },
 
         series: [{
-          type: 'column',
+          type: 'area',
           data: data,
-          lineWidth: 0,
+          lineWidth: 0.5,
           name: props.title
         }]
       };
@@ -100,4 +153,4 @@ const GraficoBarra = (props) =>
     );
 }
 
-export default GraficoBarra;
+export default Grafico3;

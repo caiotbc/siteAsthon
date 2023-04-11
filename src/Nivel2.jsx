@@ -1,7 +1,6 @@
 import { Grid} from '@mui/material';
 import React, { useState , useEffect } from 'react';
-import Grafico2 from "./components/Grafico2";
-import Grafico3 from "./components/Grafico3";
+import Grafico from "./components/Grafico"
 import Card from "./components/Card"
 import CardLora from "./components/CardLora"
 import Ficha from "./components/Ficha"
@@ -124,15 +123,15 @@ const Nivel = (props) =>
                       marginLeft={1}
                       marginRight={1}
                       >
-           
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastHour} title={"Nível do rio na última hora"} interval={5} date={"HH:mm"}/>
+
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastHour} title={"Nível do rio na última hora"} interval={5} date={"HH:mm"}/>
                     </Grid>
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastDay} title={"Nível do rio no último dia"} interval={5} date={"HH:mm"}/>
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastDay} title={"Nível do rio no último dia"} interval={150} date={"HH:mm"}/>
                     </Grid>
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastWeek} title={"Nível do rio na última semana"} interval={5} date={"HH:mm"}/>
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastWeek} title={"Nível do rio na última semana"} interval={700} date={"DD/MM"}/>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                       <Card data={currentLevel} title={"Nível do rio no último minuto"} unit={" m"}/>

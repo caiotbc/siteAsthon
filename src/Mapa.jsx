@@ -32,7 +32,7 @@ const Mapa = (props) =>
        //console.log(response.data);
        if(response.data[0])
        {
-          level = response.data[0].value;
+          level = response.data[0][0];
          
           if(level<1.9)
           {
@@ -77,7 +77,7 @@ const Mapa = (props) =>
        //console.log(response.data);
        if(response.data[0])
        {
-          level = response.data[0].value;
+          level = response.data[0][1];
          
           if(level<1.9)
           {

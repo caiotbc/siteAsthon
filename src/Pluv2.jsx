@@ -2,7 +2,6 @@ import {Grid} from '@mui/material';
 import React, { useState , useEffect } from 'react';
 import GraficoBarra from "./components/GraficoBarra"
 import Grafico from './components/Grafico';
-import Grafico3 from './components/Grafico3';
 import Card from "./components/Card"
 import CardLora from "./components/CardLora"
 import Ficha from "./components/Ficha"
@@ -117,7 +116,6 @@ const Pluv = (props) =>
   const [rainLastDay, setRainLastDay] = useState([]);
   const [rainAmountLastHour, setRainAmountLastHour] = useState([]);
   const [rainAmountLastDay, setRainAmountLastDay] = useState([]);
-  const [rainAmountLastWeek, setRainAmountLastWeek] = useState([]);
   const [currentRain, setCurrentRain] = useState([]);
   
   useEffect(() => 
@@ -197,22 +195,6 @@ const Pluv = (props) =>
 
   useEffect(() => 
   {
-    axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "rainAmountLastWeek", id: "260d941c" }}).then((response) => 
-    {
-       //console.log(response.data);
-       if(response.data[0])
-       {
-        setRainAmountLastWeek(response.data);
-       }
-       else
-       {
-        setRainAmountLastWeek([{timestamp: "" , value : 0}]);
-       }
-    });
-  }, []);
-
-  useEffect(() => 
-  {
     axios.get(baseURL + 'getData', { crossDomain: true , params: { value: "currentLevel", id: "260d941c" }}).then((response) => 
     {
        //console.log(response.data);
@@ -240,14 +222,14 @@ const Pluv = (props) =>
                     marginRight={1}
                     >
 
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastHour} title={"Nível do rio na última hora"} interval={5} date={"HH:mm"}/>
+<Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastHour} title={"Nível do rio na última hora"} interval={5} date={"HH:mm"}/>
                     </Grid>
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastDay} title={"Nível do rio no último dia"} interval={5} date={"HH:mm"}/>
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastDay} title={"Nível do rio no último dia"} interval={150} date={"HH:mm"}/>
                     </Grid>
-                    <Grid item sx={{minWidth: '400px'}} lg={4} md={12} sm={10} xs={10}>
-                      <Grafico3 data={levelLastWeek} title={"Nível do rio na última semana"} interval={5} date={"HH:mm"}/>
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                      <Grafico data={levelLastWeek} title={"Nível do rio na última semana"} interval={700} date={"DD/MM"}/>
                     </Grid>
                     
                   <Grid item lg={4} md={4} sm={12} xs={12}>
@@ -267,9 +249,6 @@ const Pluv = (props) =>
                   </Grid>
                   <Grid item lg={3} md={4} sm={12} xs={12}>
                     <Card data={rainAmountLastDay} title={"Chuva registrada no último dia"} unit={" mm"}/>
-                  </Grid>
-                  <Grid item lg={3} md={4} sm={12} xs={12}>
-                    <Card data={rainAmountLastWeek} title={"Chuva registrada na última semana"} unit={" mm"}/>
                   </Grid>
                   <Grid item lg={3} md={4} sm={12} xs={12}>
                     <CardLora data={lastLora} title={"Último envio LoRaWAN"}/>
