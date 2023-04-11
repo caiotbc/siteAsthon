@@ -250,13 +250,13 @@ const Pluv = (props) =>
                       <Grafico3 data={levelLastWeek} title={"Nível do rio na última semana"} interval={5} date={"HH:mm"}/>
                     </Grid>
                     
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Grid item sx={{minWidth: '400px'}} lg={4} md={4} sm={12} xs={12}>
                     <GraficoBarra data={rainLastHour} title={"Chuva na última hora"} interval={5} date={"HH:mm"}/>
                   </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Grid item sx={{minWidth: '400px'}} lg={4} md={4} sm={12} xs={12}>
                     <GraficoBarra data={rainLastDay} title={"Chuva no último dia"} interval={250} date={"HH:mm"}/>
                   </Grid>
-                  <Grid item lg={4} md={4} sm={12} xs={12}>
+                  <Grid itemsx={{minWidth: '400px'}} lg={4} md={4} sm={12} xs={12}>
                     <GraficoBarra data={rainLastWeek} title={"Chuva na última semana"} interval={900} date={"DD/MM"}/>
                   </Grid>
                   <Grid item lg={3} md={4} sm={12} xs={12}>
